@@ -416,7 +416,8 @@ export default function App() {
                   {isMobile && wf===i && (
                     <div style={{ background: navyMid, border: "1px solid rgba(255,255,255,0.06)", borderRadius: 4, overflow: "hidden", marginTop: 4 }}>
                       <div style={{ padding: "14px 20px", borderLeft: "4px solid " + w.accent, borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-                        <div style={{ fontSize: 13, color: grey, lineHeight: 1.6 }}>{w.desc}</div>
+                        <div style={{ fontSize: 12, color: grey, lineHeight: 1.6 }}>{w.desc}</div>
+                        <div style={{ marginTop: 6 }}><span style={{ fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: grey }}>Trigger: </span><span style={{ fontSize: 13, fontWeight: 700, color: gold }}>{w.trigger}</span></div>
                       </div>
                       <div style={{ padding: "22px 26px" }}>
                         <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 3, textTransform: "uppercase", color: grey, marginBottom: 16 }}>Email Sequence — Tap to expand</div>
@@ -482,7 +483,7 @@ export default function App() {
           <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", flexWrap: "nowrap" }}>
             {PIPELINE.map((p,i) => (
               <div key={i} style={{ flex: "1 1 100%", background: navyMid, padding: "26px 18px", textAlign: "center", border: "1px solid rgba(255,255,255,0.06)", position: "relative" }}>
-                {i < PIPELINE.length - 1 && (<div style={{ textAlign: "center", fontSize: 16, color: blue, padding: "10px 0", width: "100%" }}>{isMobile ? "v" : ">"}</div>)}
+                {i < PIPELINE.length - 1 && (<div style={{ display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, color: blue, padding: isMobile ? "4px 0" : "0 4px", minWidth: isMobile ? "100%" : 24 }}>{isMobile ? "v" : ">"}</div>)}
                 <div style={{ fontSize: 13, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1, color: white, marginBottom: 7 }}>{p.title}</div>
                 <div style={{ fontSize: 12, color: grey, lineHeight: 1.5 }}>{p.desc}</div>
               </div>
