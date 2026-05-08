@@ -397,7 +397,7 @@ export default function App() {
         <div style={W}><FadeIn>
           <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 4, textTransform: "uppercase", color: blueBright, marginBottom: 8 }}>GHL Automation Workflows</div>
           <h2 style={{ fontFamily: "Georgia, serif", fontSize: "clamp(32px,6vw,60px)", lineHeight: 1, color: white, marginBottom: 32, fontWeight: 700 }}>The Four <span style={{ color: gold }}>Workflows</span></h2>
-          <div style={{ display: "grid", gridTemplateColumns: "minmax(180px,240px) 1fr", gap: 20, alignItems: "start" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 20, alignItems: "start" }}>
             <div style={{ display: "flex", flexDirection: "column", gap: 8, position: "sticky", top: 68 }}>
               {WORKFLOWS.map((w,i) => (
                 <button key={i} onClick={() => setWf(i)} style={{ background: wf===i ? "#1a2744" : navyMid, border: "none", cursor: "pointer", borderLeft: "4px solid " + (wf===i ? w.accent : "transparent"), padding: "18px 20px", textAlign: "left", transition: "all 0.2s", borderRadius: 2 }}>
@@ -458,7 +458,7 @@ export default function App() {
           <p style={{ color: grey, fontSize: 14, maxWidth: 560, marginBottom: 40, lineHeight: 1.7 }}>Sam records a voice note on Monday morning. By Thursday, a polished newsletter is in every inbox. He touches it once.</p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 0 }}>
             {PIPELINE.map((p,i) => (
-              <div key={i} style={{ flex: "1 1 140px", background: navyMid, padding: "26px 18px", textAlign: "center", border: "1px solid rgba(255,255,255,0.06)", position: "relative" }}>
+              <div key={i} style={{ flex: "1 1 100%", background: navyMid, padding: "26px 18px", textAlign: "center", border: "1px solid rgba(255,255,255,0.06)", position: "relative" }}>
                 {i < PIPELINE.length - 1 && (<div style={{ position: "absolute", right: -10, top: "50%", transform: "translateY(-50%)", fontSize: 16, color: blue, zIndex: 2, background: navy, padding: "0 3px" }}>→</div>)}
                 <div style={{ fontSize: 13, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1, color: white, marginBottom: 7 }}>{p.title}</div>
                 <div style={{ fontSize: 12, color: grey, lineHeight: 1.5 }}>{p.desc}</div>
