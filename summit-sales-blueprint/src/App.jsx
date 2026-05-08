@@ -268,7 +268,7 @@ function FadeIn({ children }) {
 
 export default function App() {
   const [tab, setTab] = useState("overview");
-  const [wf, setWf] = useState(null);
+  const [wf, setWf] = useState(0);
   const [heroVis, setHeroVis] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   useEffect(() => { const h = () => setIsMobile(window.innerWidth < 768); window.addEventListener('resize', h); return () => window.removeEventListener('resize', h); }, []);
@@ -432,7 +432,7 @@ export default function App() {
               ))}
             </div>
             <div key={wf}>{(() => {
-              const w = WORKFLOWS[wf];
+              const w = WORKFLOWS[wf] || WORKFLOWS[0];
               return (
                 <div style={{ background: navyMid, border: "1px solid rgba(255,255,255,0.06)", borderRadius: 4, overflow: "hidden" }}>
                   <div style={{ padding: "22px 26px", borderLeft: "4px solid " + w.accent, background: "rgba(30,111,207,0.07)", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
