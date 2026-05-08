@@ -433,7 +433,7 @@ export default function App() {
                 </div>
               ))}
             </div>
-            <div key={wf}>{(() => {
+            {!isMobile && <div key={wf}>{(() => {
               const w = WORKFLOWS[wf] || WORKFLOWS[0];
               return (
                 <div style={{ background: navyMid, border: "1px solid rgba(255,255,255,0.06)", borderRadius: 4, overflow: "hidden" }}>
@@ -452,7 +452,7 @@ export default function App() {
                   </div>
                 </div>
               );
-            })()}</div>
+            })()}</div>}
           </div>
         </FadeIn></div>
       )}
