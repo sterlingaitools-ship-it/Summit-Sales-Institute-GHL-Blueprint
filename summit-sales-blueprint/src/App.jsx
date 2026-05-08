@@ -268,7 +268,7 @@ function FadeIn({ children }) {
 
 export default function App() {
   const [tab, setTab] = useState("overview");
-  const [wf, setWf] = useState(0);
+  const [wf, setWf] = useState(null);
   const [heroVis, setHeroVis] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   useEffect(() => { const h = () => setIsMobile(window.innerWidth < 768); window.addEventListener('resize', h); return () => window.removeEventListener('resize', h); }, []);
