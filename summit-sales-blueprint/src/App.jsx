@@ -403,7 +403,7 @@ export default function App() {
             <div style={{ display: "flex", flexDirection: "column", gap: 8, position: isMobile ? "static" : "sticky", top: 68 }}>
               {WORKFLOWS.map((w,i) => (
                 <div key={i}>
-                  <button onClick={() => setWf(wf===i && isMobile ? -1 : i)} style={{ width: "100%", background: wf===i ? "#1a2744" : navyMid, border: "none", cursor: "pointer", borderLeft: "4px solid " + (wf===i ? w.accent : "transparent"), padding: "18px 20px", textAlign: "left", transition: "all 0.2s", borderRadius: 2 }}>
+                  <button onClick={() => setWf(wf===i && isMobile ? null : i)} style={{ width: "100%", background: wf===i ? "#1a2744" : navyMid, border: "none", cursor: "pointer", borderLeft: "4px solid " + (wf===i ? w.accent : "transparent"), padding: "18px 20px", textAlign: "left", transition: "all 0.2s", borderRadius: 2 }}>
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                       <div>
                         <div style={{ fontFamily: "Georgia, serif", fontSize: 28, fontWeight: 700, color: wf===i ? w.accent : grey, lineHeight: 1, marginBottom: 4 }}>{w.num}</div>
@@ -415,11 +415,9 @@ export default function App() {
                   </button>
                   {isMobile && wf===i && (
                     <div style={{ background: navyMid, border: "1px solid rgba(255,255,255,0.06)", borderRadius: 4, overflow: "hidden", marginTop: 4 }}>
-                      <div style={{ padding: "22px 26px", borderLeft: "4px solid " + w.accent, background: "rgba(30,111,207,0.07)", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-                        <div style={{ fontFamily: "Georgia, serif", fontSize: 44, fontWeight: 700, color: w.accent, opacity: 0.35, lineHeight: 1 }}>{w.num}</div>
-                        <div style={{ fontSize: 20, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1, color: white, marginTop: 4 }}>{w.title}</div>
-                        <div style={{ fontSize: 13, color: grey, marginTop: 6, lineHeight: 1.6 }}>{w.desc}</div>
-                        <div style={{ marginTop: 10 }}><span style={{ fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: grey }}>Trigger: </span><span style={{ fontSize: 14, fontWeight: 700, color: gold }}>{w.trigger}</span></div>
+                      <div style={{ padding: "16px 26px", borderLeft: "4px solid " + w.accent, background: "rgba(30,111,207,0.07)", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+                        <div style={{ fontSize: 13, color: grey, lineHeight: 1.6 }}>{w.desc}</div>
+                        <div style={{ marginTop: 8 }}><span style={{ fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: grey }}>Trigger: </span><span style={{ fontSize: 14, fontWeight: 700, color: gold }}>{w.trigger}</span></div>
                       </div>
                       <div style={{ padding: "22px 26px" }}>
                         <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 3, textTransform: "uppercase", color: grey, marginBottom: 16 }}>Email Sequence — Tap to expand</div>
