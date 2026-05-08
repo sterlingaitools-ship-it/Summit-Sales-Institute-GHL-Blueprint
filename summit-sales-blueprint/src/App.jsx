@@ -269,6 +269,7 @@ function FadeIn({ children }) {
 export default function App() {
   const [tab, setTab] = useState("overview");
   const [wf, setWf] = useState(0);
+  const [mobileWf, setMobileWf] = useState(null);
   const [heroVis, setHeroVis] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   useEffect(() => { const h = () => setIsMobile(window.innerWidth < 768); window.addEventListener('resize', h); return () => window.removeEventListener('resize', h); }, []);
@@ -403,17 +404,17 @@ export default function App() {
             <div style={{ display: "flex", flexDirection: "column", gap: 8, position: isMobile ? "static" : "sticky", top: 68 }}>
               {WORKFLOWS.map((w,i) => (
                 <div key={i}>
-                  <button onClick={() => setWf(wf===i && isMobile ? null : i)} style={{ width: "100%", background: wf===i ? "#1a2744" : navyMid, border: "none", cursor: "pointer", borderLeft: "4px solid " + (wf===i ? w.accent : "transparent"), padding: "18px 20px", textAlign: "left", transition: "all 0.2s", borderRadius: 2 }}>
+                  <button onClick={() => { if(isMobile){ setMobileWf(mobileWf===i ? null : i); } else { setWf(i); } }} style={{ width: "100%", background: (isMobile ? mobileWf : wf)===i ? "#1a2744" : navyMid, border: "none", cursor: "pointer", borderLeft: "4px solid " + ((isMobile ? mobileWf : wf)===i ? w.accent : "transparent"), padding: "18px 20px", textAlign: "left", transition: "all 0.2s", borderRadius: 2 }}>
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                       <div>
                         <div style={{ fontFamily: "Georgia, serif", fontSize: 28, fontWeight: 700, color: wf===i ? w.accent : grey, lineHeight: 1, marginBottom: 4 }}>{w.num}</div>
                         <div style={{ fontSize: 13, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1, color: white }}>{w.title}</div>
                         <div style={{ fontSize: 11, color: grey, marginTop: 3 }}>Trigger: {w.trigger}</div>
                       </div>
-                      {isMobile && <span style={{ color: grey, fontSize: 14, marginLeft: 12 }}>{wf===i ? "^" : "v"}</span>}
+                      {isMobile && <span style={{ color: grey, fontSize: 14, marginLeft: 12 }}>{mobileWf===i ? "^" : "v"}</span>}
                     </div>
                   </button>
-                  {isMobile && wf===i && (
+                  {isMobile && mobileWf===i && (
                     <div style={{ background: navyMid, border: "1px solid rgba(255,255,255,0.06)", borderRadius: 4, overflow: "hidden", marginTop: 4 }}>
                       <div style={{ padding: "14px 20px", borderLeft: "4px solid " + w.accent, borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
                         <div style={{ fontSize: 12, color: grey, lineHeight: 1.6 }}>{w.desc}</div>
