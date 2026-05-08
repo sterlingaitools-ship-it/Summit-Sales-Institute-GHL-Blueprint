@@ -399,7 +399,7 @@ export default function App() {
         <div style={W}><FadeIn>
           <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 4, textTransform: "uppercase", color: blueBright, marginBottom: 8 }}>GHL Automation Workflows</div>
           <h2 style={{ fontFamily: "Georgia, serif", fontSize: "clamp(32px,6vw,60px)", lineHeight: 1, color: white, marginBottom: 32, fontWeight: 700 }}>The Four <span style={{ color: gold }}>Workflows</span></h2>
-          <div style={{ display: isMobile ? "flex" : "grid", flexDirection: "column", gridTemplateColumns: "minmax(180px,240px) 1fr", gap: 20, alignItems: "start" }}>
+          <div style={{ display: isMobile ? "flex" : "grid", flexDirection: "column", gridTemplateColumns: isMobile ? "1fr" : "minmax(180px,240px) 1fr", gap: 20, alignItems: "start" }}>
             <div style={{ display: "flex", flexDirection: "column", gap: 8, position: isMobile ? "static" : "sticky", top: 68 }}>
               {WORKFLOWS.map((w,i) => (
                 <div key={i}>
@@ -415,9 +415,8 @@ export default function App() {
                   </button>
                   {isMobile && wf===i && (
                     <div style={{ background: navyMid, border: "1px solid rgba(255,255,255,0.06)", borderRadius: 4, overflow: "hidden", marginTop: 4 }}>
-                      <div style={{ padding: "16px 26px", borderLeft: "4px solid " + w.accent, background: "rgba(30,111,207,0.07)", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+                      <div style={{ padding: "14px 20px", borderLeft: "4px solid " + w.accent, borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
                         <div style={{ fontSize: 13, color: grey, lineHeight: 1.6 }}>{w.desc}</div>
-                        <div style={{ marginTop: 8 }}><span style={{ fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: grey }}>Trigger: </span><span style={{ fontSize: 14, fontWeight: 700, color: gold }}>{w.trigger}</span></div>
                       </div>
                       <div style={{ padding: "22px 26px" }}>
                         <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 3, textTransform: "uppercase", color: grey, marginBottom: 16 }}>Email Sequence — Tap to expand</div>
@@ -480,10 +479,10 @@ export default function App() {
           <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 4, textTransform: "uppercase", color: blueBright, marginBottom: 8 }}>Content Production Pipeline</div>
           <h2 style={{ fontFamily: "Georgia, serif", fontSize: "clamp(32px,6vw,60px)", lineHeight: 1, color: white, marginBottom: 32, fontWeight: 700 }}>Voice Note to <span style={{ color: gold }}>Newsletter</span></h2>
           <p style={{ color: grey, fontSize: 14, maxWidth: 560, marginBottom: 40, lineHeight: 1.7 }}>Sam records a voice note on Monday morning. By Thursday, a polished newsletter is in every inbox. He touches it once.</p>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 0 }}>
+          <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", flexWrap: "nowrap" }}>
             {PIPELINE.map((p,i) => (
               <div key={i} style={{ flex: "1 1 100%", background: navyMid, padding: "26px 18px", textAlign: "center", border: "1px solid rgba(255,255,255,0.06)", position: "relative" }}>
-                {i < PIPELINE.length - 1 && (<div style={{ position: isMobile ? "static" : "absolute", right: -10, top: "50%", transform: isMobile ? "none" : "translateY(-50%)", fontSize: 16, color: blue, zIndex: 2, background: navy, padding: isMobile ? "8px 0" : "0 3px", textAlign: "center" }}>{isMobile ? "↓" : "→"}</div>)}
+                {i < PIPELINE.length - 1 && (<div style={{ textAlign: "center", fontSize: 16, color: blue, padding: "10px 0", width: "100%" }}>{isMobile ? "↓" : "→"}</div>)}
                 <div style={{ fontSize: 13, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1, color: white, marginBottom: 7 }}>{p.title}</div>
                 <div style={{ fontSize: 12, color: grey, lineHeight: 1.5 }}>{p.desc}</div>
               </div>
