@@ -522,7 +522,7 @@ export default function App() {
             </div>
           ))}
         </div>
-        <div style={{ fontSize: 11, letterSpacing: 1, color: grey, textTransform: "uppercase", opacity: 0.4 }}>Evolentra x Summit Sales Institute — Built by Aiden Maila</div>
+        <div style={{ fontSize: 11, letterSpacing: 1, color: grey, textTransform: "uppercase", opacity: 0.4 }}>Summit Sales Institute — Built by Aiden Maila</div>
       </div>
 
     </div>
