@@ -484,10 +484,12 @@ export default function App() {
           <p style={{ color: grey, fontSize: 14, maxWidth: 560, marginBottom: 40, lineHeight: 1.7 }}>Sam records a voice note on Monday morning. By Thursday, a polished newsletter is in every inbox. He touches it once.</p>
           <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", flexWrap: "nowrap" }}>
             {PIPELINE.map((p,i) => (
-              <div key={i} style={{ flex: "1 1 100%", background: navyMid, padding: "26px 18px", textAlign: "center", border: "1px solid rgba(255,255,255,0.06)", position: "relative" }}>
-                {i < PIPELINE.length - 1 && (<div style={{ display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, color: blue, padding: isMobile ? "4px 0" : "0 4px", minWidth: isMobile ? "100%" : 24 }}>{isMobile ? "v" : ">"}</div>)}
-                <div style={{ fontSize: 13, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1, color: white, marginBottom: 7 }}>{p.title}</div>
-                <div style={{ fontSize: 12, color: grey, lineHeight: 1.5 }}>{p.desc}</div>
+              <div key={i} style={{ display: "contents" }}>
+                <div style={{ flex: "1 1 100%", background: navyMid, padding: "26px 18px", textAlign: "center", border: "1px solid rgba(255,255,255,0.06)" }}>
+                  <div style={{ fontSize: 13, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1, color: white, marginBottom: 7 }}>{p.title}</div>
+                  <div style={{ fontSize: 12, color: grey, lineHeight: 1.5 }}>{p.desc}</div>
+                </div>
+                {i < PIPELINE.length - 1 && (<div style={{ display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, color: blue, padding: isMobile ? "8px 0" : "0", minWidth: isMobile ? "100%" : "100%", flex: "0 0 auto" }}>{isMobile ? "v" : ">"}</div>)}
               </div>
             ))}
           </div>
