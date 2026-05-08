@@ -238,7 +238,7 @@ function EmailStep({ email }) {
             <div style={{ fontWeight: 700, fontSize: 15, color: "#f0f4ff" }}>{email.title}</div>
             <div style={{ fontSize: 11, color: "#c9a227", fontStyle: "italic", marginTop: 2 }}>{email.subject}</div>
           </div>
-          <span style={{ color: "#8a96b0", fontSize: 12 }}>{open ? "▲" : "▼"}</span>
+          <span style={{ color: "#8a96b0", fontSize: 12 }}>{open ? "^" : "v"}</span>
         </div>
         {open && (
           <div style={{ padding: "0 18px 16px" }}>
@@ -298,7 +298,7 @@ export default function App() {
         ].map((el,i) => (
           <div key={i} style={{ opacity: heroVis ? 1 : 0, transform: heroVis ? "translateY(0)" : "translateY(28px)", transition: "all 0.8s ease " + (0.1 + i * 0.15) + "s", marginBottom: 24 }}>{el}</div>
         ))}
-        <div style={{ position: "absolute", bottom: 28, left: "50%", animation: "bounce 2s infinite", opacity: 0.35, fontSize: 20 }}>↓</div>
+        <div style={{ position: "absolute", bottom: 28, left: "50%", animation: "bounce 2s infinite", opacity: 0.35, fontSize: 20 }}>v</div>
       </div>
 
       <div style={{ position: "sticky", top: 0, zIndex: 100, background: "rgba(10,15,30,0.97)", backdropFilter: "blur(12px)", borderBottom: "1px solid rgba(30,111,207,0.2)", display: "flex", overflowX: "auto", padding: "0 12px" }}>
@@ -410,7 +410,7 @@ export default function App() {
                         <div style={{ fontSize: 13, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1, color: white }}>{w.title}</div>
                         <div style={{ fontSize: 11, color: grey, marginTop: 3 }}>Trigger: {w.trigger}</div>
                       </div>
-                      {isMobile && <span style={{ color: grey, fontSize: 14, marginLeft: 12 }}>{wf===i ? "▲" : "▼"}</span>}
+                      {isMobile && <span style={{ color: grey, fontSize: 14, marginLeft: 12 }}>{wf===i ? "^" : "v"}</span>}
                     </div>
                   </button>
                   {isMobile && wf===i && (
@@ -482,7 +482,7 @@ export default function App() {
           <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", flexWrap: "nowrap" }}>
             {PIPELINE.map((p,i) => (
               <div key={i} style={{ flex: "1 1 100%", background: navyMid, padding: "26px 18px", textAlign: "center", border: "1px solid rgba(255,255,255,0.06)", position: "relative" }}>
-                {i < PIPELINE.length - 1 && (<div style={{ textAlign: "center", fontSize: 16, color: blue, padding: "10px 0", width: "100%" }}>{isMobile ? "↓" : "→"}</div>)}
+                {i < PIPELINE.length - 1 && (<div style={{ textAlign: "center", fontSize: 16, color: blue, padding: "10px 0", width: "100%" }}>{isMobile ? "v" : ">"}</div>)}
                 <div style={{ fontSize: 13, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1, color: white, marginBottom: 7 }}>{p.title}</div>
                 <div style={{ fontSize: 12, color: grey, lineHeight: 1.5 }}>{p.desc}</div>
               </div>
