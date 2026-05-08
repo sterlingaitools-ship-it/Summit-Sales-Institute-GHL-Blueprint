@@ -270,6 +270,8 @@ export default function App() {
   const [tab, setTab] = useState("overview");
   const [wf, setWf] = useState(0);
   const [heroVis, setHeroVis] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  useEffect(() => { const h = () => setIsMobile(window.innerWidth < 768); window.addEventListener('resize', h); return () => window.removeEventListener('resize', h); }, []);
   useEffect(() => { setTimeout(() => setHeroVis(true), 120); }, []);
   const W = { maxWidth: 920, margin: "0 auto", padding: "60px 20px" };
   const navy = "#0a0f1e";
@@ -397,14 +399,38 @@ export default function App() {
         <div style={W}><FadeIn>
           <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 4, textTransform: "uppercase", color: blueBright, marginBottom: 8 }}>GHL Automation Workflows</div>
           <h2 style={{ fontFamily: "Georgia, serif", fontSize: "clamp(32px,6vw,60px)", lineHeight: 1, color: white, marginBottom: 32, fontWeight: 700 }}>The Four <span style={{ color: gold }}>Workflows</span></h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 20, alignItems: "start" }}>
-            <div style={{ display: "flex", flexDirection: "column", gap: 8, position: "sticky", top: 68 }}>
+          <div style={{ display: isMobile ? "flex" : "grid", flexDirection: "column", gridTemplateColumns: "minmax(180px,240px) 1fr", gap: 20, alignItems: "start" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8, position: isMobile ? "static" : "sticky", top: 68 }}>
               {WORKFLOWS.map((w,i) => (
-                <button key={i} onClick={() => setWf(i)} style={{ background: wf===i ? "#1a2744" : navyMid, border: "none", cursor: "pointer", borderLeft: "4px solid " + (wf===i ? w.accent : "transparent"), padding: "18px 20px", textAlign: "left", transition: "all 0.2s", borderRadius: 2 }}>
-                  <div style={{ fontFamily: "Georgia, serif", fontSize: 28, fontWeight: 700, color: wf===i ? w.accent : grey, lineHeight: 1, marginBottom: 4 }}>{w.num}</div>
-                  <div style={{ fontSize: 13, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1, color: white }}>{w.title}</div>
-                  <div style={{ fontSize: 11, color: grey, marginTop: 3 }}>Trigger: {w.trigger}</div>
-                </button>
+                <div key={i}>
+                  <button onClick={() => setWf(wf===i && isMobile ? -1 : i)} style={{ width: "100%", background: wf===i ? "#1a2744" : navyMid, border: "none", cursor: "pointer", borderLeft: "4px solid " + (wf===i ? w.accent : "transparent"), padding: "18px 20px", textAlign: "left", transition: "all 0.2s", borderRadius: 2 }}>
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                      <div>
+                        <div style={{ fontFamily: "Georgia, serif", fontSize: 28, fontWeight: 700, color: wf===i ? w.accent : grey, lineHeight: 1, marginBottom: 4 }}>{w.num}</div>
+                        <div style={{ fontSize: 13, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1, color: white }}>{w.title}</div>
+                        <div style={{ fontSize: 11, color: grey, marginTop: 3 }}>Trigger: {w.trigger}</div>
+                      </div>
+                      {isMobile && <span style={{ color: grey, fontSize: 14, marginLeft: 12 }}>{wf===i ? "▲" : "▼"}</span>}
+                    </div>
+                  </button>
+                  {isMobile && wf===i && (
+                    <div style={{ background: navyMid, border: "1px solid rgba(255,255,255,0.06)", borderRadius: 4, overflow: "hidden", marginTop: 4 }}>
+                      <div style={{ padding: "22px 26px", borderLeft: "4px solid " + w.accent, background: "rgba(30,111,207,0.07)", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+                        <div style={{ fontFamily: "Georgia, serif", fontSize: 44, fontWeight: 700, color: w.accent, opacity: 0.35, lineHeight: 1 }}>{w.num}</div>
+                        <div style={{ fontSize: 20, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1, color: white, marginTop: 4 }}>{w.title}</div>
+                        <div style={{ fontSize: 13, color: grey, marginTop: 6, lineHeight: 1.6 }}>{w.desc}</div>
+                        <div style={{ marginTop: 10 }}><span style={{ fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: grey }}>Trigger: </span><span style={{ fontSize: 14, fontWeight: 700, color: gold }}>{w.trigger}</span></div>
+                      </div>
+                      <div style={{ padding: "22px 26px" }}>
+                        <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 3, textTransform: "uppercase", color: grey, marginBottom: 16 }}>Email Sequence — Tap to expand</div>
+                        <div style={{ position: "relative" }}>
+                          <div style={{ position: "absolute", left: 4, top: 8, bottom: 8, width: 1, background: "linear-gradient(to bottom, " + w.accent + ", transparent)" }} />
+                          {w.emails.map((e,i) => <EmailStep key={i} email={e} />)}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
               ))}
             </div>
             <div key={wf}>{(() => {
@@ -459,7 +485,7 @@ export default function App() {
           <div style={{ display: "flex", flexWrap: "wrap", gap: 0 }}>
             {PIPELINE.map((p,i) => (
               <div key={i} style={{ flex: "1 1 100%", background: navyMid, padding: "26px 18px", textAlign: "center", border: "1px solid rgba(255,255,255,0.06)", position: "relative" }}>
-                {i < PIPELINE.length - 1 && (<div style={{ position: "absolute", right: -10, top: "50%", transform: "translateY(-50%)", fontSize: 16, color: blue, zIndex: 2, background: navy, padding: "0 3px" }}>→</div>)}
+                {i < PIPELINE.length - 1 && (<div style={{ position: isMobile ? "static" : "absolute", right: -10, top: "50%", transform: isMobile ? "none" : "translateY(-50%)", fontSize: 16, color: blue, zIndex: 2, background: navy, padding: isMobile ? "8px 0" : "0 3px", textAlign: "center" }}>{isMobile ? "↓" : "→"}</div>)}
                 <div style={{ fontSize: 13, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1, color: white, marginBottom: 7 }}>{p.title}</div>
                 <div style={{ fontSize: 12, color: grey, lineHeight: 1.5 }}>{p.desc}</div>
               </div>
