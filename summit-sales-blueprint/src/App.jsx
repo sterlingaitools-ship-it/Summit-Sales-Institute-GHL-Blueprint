@@ -434,7 +434,7 @@ export default function App() {
               ))}
             </div>
             {!isMobile && <div key={wf}>{(() => {
-              const w = WORKFLOWS[wf] || WORKFLOWS[0];
+              const w = WORKFLOWS[wf];
               return (
                 <div style={{ background: navyMid, border: "1px solid rgba(255,255,255,0.06)", borderRadius: 4, overflow: "hidden" }}>
                   <div style={{ padding: "22px 26px", borderLeft: "4px solid " + w.accent, background: "rgba(30,111,207,0.07)", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
